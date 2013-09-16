@@ -1,0 +1,25 @@
+WAF_USE_BUNDLED=1
+inherit waf
+
+NAME="lv2"
+VERSION=1.6.0
+RELEASE=1
+CATEGORY="Audio"
+SUMMARY="Base LV2 audio plugins"
+DESCRIPTION="LV2 is a portable plugin standard for audio systems, similar in
+scope to ​LADSPA, VST, AU, and others. It defines a C API for code and a format
+for data files which collectively describe a plugin. LV2 consists of a simple
+core (roughly equivalent in power to LADSPA) which can be extended to support
+more advanced functionality. This allows the interface to be grown to
+accommodate the needs of real software as they arise."
+HOMEPAGE="http://lv2plug.in/"
+SRC_URI="http://lv2plug.in/spec/lv2-${VERSION}.tar.bz2"
+PATCH_URI="1.6.0-cygwin.patch"
+
+PKG_NAMES="lv2 lv2-devel"
+lv2_OBSOLETES="lv2core"
+lv2_CONTENTS="usr/lib/lv2/ usr/share/doc/"
+lv2_devel_SUMMARY="LV2 audio plugin specification"
+lv2_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
+# waf needs patch not to install implibs for modules
+PKG_IGNORE="usr/lib/lib*.dll.a"
